@@ -1,0 +1,200 @@
+
+@font-face {
+  font-family: "CustomFont";
+  src: url("../src/components/fonts/IRANYekanWebBold.ttf");
+   src: url("../src/components/fonts/IRANYekanWebMedium.ttf"),
+  url("../src/components/fonts/IRANYekanWebRegular.ttf"),
+  
+  }
+
+
+.App {
+  text-align: center;
+  background-color: rgba(216, 34, 34, 0.842)!important;
+ 
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+/* .background{
+  background-color: gray!important;
+  height: 200%;
+} */
+
+label{
+  margin-top:20px ;
+  margin-bottom: 10px;
+  text-align: right;
+  margin-right: 30px;
+  color: #818181;
+  font-family: 'CustomFont';
+  font-size: 14px;
+}
+.name{
+  display: flex;
+  position: absolute;
+  left: 130px;
+  top: 23px;
+  direction: rtl;
+  font-family: 'CustomFont';
+
+}
+.phone{
+  position: absolute;
+  left: 117px;
+  top: 57px;
+  direction: rtl;
+  font-family: 'CustomFont';
+  color: #818181;
+  width: 83px;
+  font-size: 14px;
+
+}
+.amount{
+color: rgb(8, 165, 8);
+}
+.mali{
+  display: flex;
+}
+.username{
+  width: 300px;
+  height: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end!important;
+  position: absolute;
+  left:14px ;
+  top: 120px;
+  color: #B1B1B1;
+  font-size: 14px;
+  font-style: normal;
+font-weight: normal;
+line-height: 15px;
+text-align: right;
+flex: none;
+order: 1;
+flex-grow: 0;
+margin: 5px 0px;
+font-family: 'CustomFont';
+}
+.usertitle{
+  position: static;
+width: 62px;
+height: 21px;
+left: 253px;
+top: 8px;
+font-style: normal;
+font-weight: bold;
+font-size: 12px;
+line-height:22px;
+color: #55A6FF;
+flex: none;
+order: 0;
+flex-grow: 0;
+margin: 4px 0px;
+}
+.uservalue{
+  margin: 3px 0px;
+  cursor: pointer;
+}
+.icon{
+  margin-left: 10px;
+  height: 25px;
+  width: 25px;
+}
+.returnIcon{
+  width: 10.5px;
+  height: 10.5px;
+  margin-left: 10px;
+}
+.saveIcon{
+  width: 15px;
+  height: 15px;
+  margin-left: 10px;
+}
+.perIcon{
+  width: 33.17px;
+  height: 33.35px;
+  position: absolute;
+  top: 33px;
+  left: 33px;
+
+}
+.camIcon{
+  width: 16.67px;
+  height: 14.41px;
+  position: absolute;
+  top: 9px;
+  left: 9px;
+
+}
+.eicon{
+  width: 15px;
+  height: 15px;
+  margin-left: 10px;
+}
+
+
+.background{
+  background-color: #55A6FF;
+}
+input{
+  font-family: 'CustomFont';
+
+}
+
+.lengthTxt{
+  font-family: 'CustomFont';
+  color: #305986;
+  letter-spacing: 0.01em;
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 21px;
+position: absolute;
+top:478px;
+left: 24px;
+
+}
+input:focus{
+  border: blue 1px solid!important;
+  
+}
+.usernameIcon{
+  height: 15px;
+  width: 15px;
+  margin-left: 15px;
+  margin-top: 15px;
+}

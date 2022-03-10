@@ -1,0 +1,27 @@
+{
+  "posts": [
+    {
+      "id": "1",
+      "bio": "",
+      "image": "",
+      "firstname": "عطا",
+      "lastname": "صمدی",
+      "username": "atta",
+      "phone": "09123456789",
+      "myid": "1"
+    }
+  ],
+  "balance": [
+    {
+      "id": "1",
+      "amount": 1802350
+    }
+  ],
+  "profile": [
+    {
+      "id": "1",
+      "birthDate": "2000"
+    }
+    
+  ]
+}
