@@ -2,15 +2,19 @@
 @font-face {
   font-family: "CustomFont";
   src: url("../src/components/fonts/IRANYekanWebBold.ttf");
-   src: url("../src/components/fonts/IRANYekanWebMedium.ttf"),
-  url("../src/components/fonts/IRANYekanWebRegular.ttf"),
+
   
   }
 
+/* Hide scrollbar for Chrome, Safari and Opera */
+.app::-webkit-scrollbar {
+  display: none;
+}
 
-.App {
-  text-align: center;
-  background-color: rgba(216, 34, 34, 0.842)!important;
+/* Hide scrollbar for IE, Edge and Firefox */
+
+.app {
+  margin:0 auto ;
  
 }
 
@@ -48,10 +52,7 @@
     transform: rotate(360deg);
   }
 }
-/* .background{
-  background-color: gray!important;
-  height: 200%;
-} */
+
 
 label{
   margin-top:20px ;
@@ -65,7 +66,7 @@ label{
 .name{
   display: flex;
   position: absolute;
-  left: 130px;
+  left: 30%;
   top: 23px;
   direction: rtl;
   font-family: 'CustomFont';
@@ -73,7 +74,7 @@ label{
 }
 .phone{
   position: absolute;
-  left: 117px;
+  left: 30%;
   top: 57px;
   direction: rtl;
   font-family: 'CustomFont';
@@ -89,14 +90,14 @@ color: rgb(8, 165, 8);
   display: flex;
 }
 .username{
-  width: 300px;
+  width: 90%;
   height: 24px;
   display: flex;
   flex-direction: column;
-  align-items: flex-end!important;
-  position: absolute;
+ justify-content:right!important;
+  /* position: absolute;
   left:14px ;
-  top: 120px;
+  top: 120px; */
   color: #B1B1B1;
   font-size: 14px;
   font-style: normal;
@@ -106,28 +107,29 @@ text-align: right;
 flex: none;
 order: 1;
 flex-grow: 0;
-margin: 5px 0px;
+margin: 5px 0;
 font-family: 'CustomFont';
 }
-.usertitle{
-  position: static;
-width: 62px;
-height: 21px;
-left: 253px;
-top: 8px;
+.userTitle{
+  /* position: static; */
+/* width: 62px;
+height: 21px; */
+/* left: 253px; */
+/* top: 8px; */
 font-style: normal;
 font-weight: bold;
 font-size: 12px;
 line-height:22px;
 color: #55A6FF;
-flex: none;
+ flex: none;
 order: 0;
 flex-grow: 0;
-margin: 4px 0px;
+margin: 4px 0;
 }
-.uservalue{
-  margin: 3px 0px;
+.userValue{
+  margin: 3px 0;
   cursor: pointer;
+  text-align: right;
 }
 .icon{
   margin-left: 10px;
@@ -160,7 +162,7 @@ margin: 4px 0px;
   left: 9px;
 
 }
-.eicon{
+.eIcon{
   width: 15px;
   height: 15px;
   margin-left: 10px;
@@ -184,7 +186,7 @@ font-weight: 500;
 font-size: 12px;
 line-height: 21px;
 position: absolute;
-top:478px;
+top:520px;
 left: 24px;
 
 }
@@ -197,4 +199,21 @@ input:focus{
   width: 15px;
   margin-left: 15px;
   margin-top: 15px;
+}
+.BorderLine{
+  border: 1px solid #E5E5E5;
+      width: 320px;
+     height: 0px;
+   position: relative;
+   top: 64px;
+   margin:0px auto 80px auto;
+
+}
+@media screen and (max-width: 349px) {
+
+ .BorderLine{
+   width: 200px;
+ }
+
+
 }

@@ -5,11 +5,12 @@ import TextField from '@mui/material/TextField';
 import '../App.css'
 
 export const Content = styled(Box)({
-    position: 'absolute',
-    width: '360px',
+    position: 'relative',
+    width: '100%',
+  margin:'0 auto',
     height: '663px',
-    left: '0px',
-    top: '135px',
+    // left: '0px',
+    top: -30,
     
     background: '#FFFFFF',
     boxShadow: '0px 0px 4px rgba(0, 0, 0, 0.15)',
@@ -19,7 +20,7 @@ export const Content = styled(Box)({
     position: 'absolute',
     width: '109px',
     height:'32px',
-    left:' 233px',
+    left:' 70%',
     top:' 41px',
     color:'#FFFFFF',
     
@@ -35,15 +36,25 @@ export const Content = styled(Box)({
     margin:'0 auto',
     '&:focus': {
       border:'none',
-      zIndex:99
-      
+      zIndex:99,
+
    },
+
+    '@media screen and (max-width: 349px)': {
+
+      width: "200px",
+
+
+    },
+
   })
   export const Profile = styled(Box)({
     position: 'absolute',
     width: '100px',
     height:'100px',
-    left:' 132.6px',
+    // margin:'0 auto',
+
+    left:'38%',
     top:' 48px',
     borderRadius:'50% ',
     backgroundColor:'#AB47BC',
@@ -72,9 +83,14 @@ export const Content = styled(Box)({
     width: '200px',
     height:'100px',
     top:'540px',
-    left:'125px'
-   
-   
+    left:'125px',
+
+    '@media screen and (max-width: 349px)': {
+      left:'50px',
+      width: "200px",
+
+
+    },
 
     
   })

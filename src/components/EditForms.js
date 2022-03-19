@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Box } from "@mui/material";
-import { Header } from "./peson_styles";
+import { Header } from "./pesonProfile_styles";
 import {
   Content,
   Return,
@@ -9,42 +9,43 @@ import {
   BirthdayBox,
   InnerProfile,
   Input,
-  TextInput,
+
+
+
 } from "./EditForms_styles";
 import TextField from "@mui/material/TextField";
 import { FormGroup } from "@mui/material";
-import { EditBtn } from "./peson_styles";
-import { useSelector, useDispatch } from "react-redux";
-import { fetchUsers } from "./redux/userReducer";
-import { fetchprofile } from "./redux/useAmount";
+import { EditBtn } from "./pesonProfile_styles";
+import {  useDispatch } from "react-redux";
+import { fetchUsers } from "./redux/userInformation";
+import { fetchProfile } from "./redux/useAmount";
 import { useNavigate } from "react-router-dom";
 import {
-  DateTimeInput,
-  DateTimeInputSimple,
+
   DateInput,
-  DateInputSimple,
+
 } from "react-hichestan-datetimepicker";
 import "../App.css";
-import fleshIcon from "../icons/wflesh.png";
-import pen from "../icons/pen.png";
-import per from "../icons/per.png";
-import camera from "../icons/cam.png";
-import icon_a from "../icons/@ (2).png";
-import { borderRadius } from "@mui/system";
+import fleshIcon from "../icons/arrow.svg";
+import pen from "../icons/pencil2.svg";
+import profileLogo from "../icons/profileLogo.svg";
+import camera from "../icons/cameraLogo.svg";
+import icon_atSign from "../icons/@.svg";
+
 
 const EditForms = () => {
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
   const [username, setUserName] = useState("");
   const [bio, setBio] = useState("");
-  const [myDateTime, setmyDateTime] = useState("");
-  const [myid, setmyid] = useState("1");
+  const [myDateTime, setMyDateTime] = useState("");
+  const [myId, setMyId] = useState("1");
   new Date(myDateTime).toLocaleDateString("fa-IR");
 
   const dispatch = useDispatch();
-  let navigat = useNavigate();
+  let navigate = useNavigate();
   const handleChange = (event) => {
-    setmyDateTime(event.target.value);
+    setMyDateTime(event.target.value);
   };
   const handleSend = () => {
     if (firstname) {
@@ -55,7 +56,7 @@ const EditForms = () => {
           username: username,
           bio: bio,
           // myDateTime:myDateTime
-          myid: myid,
+          myId: myId,
         })
         .catch((err) => alert(err));
     } else {
@@ -67,18 +68,16 @@ const EditForms = () => {
     });
 
     dispatch(fetchUsers());
-    dispatch(fetchprofile());
+    dispatch(fetchProfile());
 
-    navigat("/");
+      navigate("/");
   };
 
   function handel() {
-    var txt;
+
     if (window.confirm("آیا مطمئن هستید که تغییرات داده شده ثبت نشود؟")) {
-      txt = "You pressed OK!";
-      navigat("/");
-    } else {
-      txt = "You pressed Cancel!";
+
+        navigate("/");
     }
   }
 
@@ -87,31 +86,39 @@ const EditForms = () => {
       <Header>
         <Return onClick={handel}>
           بازگشت
-          <img className="returnIcon" src={fleshIcon} />
+          <img className="returnIcon" src={fleshIcon} alt='icon' />
         </Return>
         <EditBtn onClick={handleSend}>
           ذخیره
-          <img className="saveIcon" src={pen} />
+          <img className="saveIcon" src={pen} alt='icon' />
         </EditBtn>
-        <Profile onClick={() => console.log("proflie")}>
-          <img className="perIcon" src={per} />
-          <InnerProfile onClick={() => console.log("Editproflie")}>
-            <img className="camIcon" src={camera} />
+        <Profile onClick={() => console.log("Profile")}>
+          <img className="perIcon" src={profileLogo} alt='icon' />
+          <InnerProfile onClick={() => console.log("EditProfile")} >
+            <img className="camIcon" src={camera} alt='icon' />
           </InnerProfile>
         </Profile>
       </Header>
       <Content>
-        <div
-          style={{
-            border: "1px solid #E5E5E5",
-            width: "320px",
-            height: "0px",
-            position: "absolute",
-            top: "64px",
-            left: "20px",
-          }}
-        ></div>
-        <FormGroup sx={{ marginTop: "60px" }}>
+        <div className='BorderLine'
+    // style={{
+    //     border: "1px solid #E5E5E5",
+    //     width: "320px",
+    //     height: "0px",
+    //     position: "relative",
+    //     top: "64px",
+    //     margin:'0px auto 80px auto',
+    //   marginBottom:'80px',
+    //     '@media screen and (max-width: 349px)': {
+    //
+    //     width: "200px",
+    //
+    //
+    // }
+    // }}
+    />
+    
+        <FormGroup  >
           <label>نام</label>
           <Input
             type="text"
@@ -131,12 +138,18 @@ const EditForms = () => {
           />
 
           <label>نام کاربری</label>
-          <div style={{ display: "flex", flexDirection: "row-reverse" }}>
+          <div style={{ display: "inline-flex", flexDirection: "row-reverse", margin:'0 auto' }}>
             <Input
               sx={{
                 width: "276px",
                 marginLeft: "0px",
                 borderRadius: "0px 6px 6px 0px",
+                  '@media screen and (max-width: 349px)': {
+
+                      width: "150px",
+
+
+                  },
               }}
               minLength="5"
               maxLength="30"
@@ -153,11 +166,16 @@ const EditForms = () => {
                 backgroundColor: "#F3F3F3",
                 borderRadius: "6px 0px 0px 6px",
                 borderRight: "2px solid #E4E4E4",
-
+                  // '@media screen and (max-width: 349px)': {
+                  //
+                  //     width: "30px",
+                  //
+                  //
+                  // },
                 marginLeft: "7px",
               }}
             >
-              <img src={icon_a} className="usernameIcon" />
+              <img src={icon_atSign} className="usernameIcon" alt='icon' />
             </Box>
           </div>
           <label>معرفی کوتاه</label>
@@ -166,6 +184,12 @@ const EditForms = () => {
               width: "320px",
               backgroundColor: "#F3F3F3",
               margin: "0 auto",
+                '@media screen and (max-width: 349px)': {
+
+                    width: "200px",
+
+
+                },
             }}
             type="text"
             multiline

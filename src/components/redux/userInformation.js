@@ -8,7 +8,7 @@ const usersSlice = createSlice({
     users: []
   },
   reducers: {
-    usersLoading(state, action) {
+    usersLoading(state) {
       if (state.loading === "idle") {
         state.loading = "pending";
       }

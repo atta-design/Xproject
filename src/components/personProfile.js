@@ -1,38 +1,33 @@
 import React, { useEffect } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
-import { fetchUsers } from "./redux/userReducer";
-import { fetchprofile } from "./redux/useAmount";
-import { CopyToClipboard } from "react-copy-to-clipboard";
+import { fetchUsers } from "./redux/userInformation";
+import { fetchProfile } from "./redux/useAmount";
 import { useNavigate } from "react-router-dom";
-import icon1 from "../icons/mo.png";
-import icon2 from "../icons/pushe.png";
-import icon3 from "../icons/save.png";
-import icon4 from "../icons/setting.png";
-import icon5 from "../icons/po.png";
-import icon6 from "../icons/rule.png";
-import icon7 from "../icons/exit.png";
-import icon8 from "../icons/edit.png";
+import ContactsIcon from "../icons/mokhatabin.svg";
+import FolderIcon from "../icons/pushe.svg";
+import saveIcon from "../icons/save.svg";
+import settingIcon from "../icons/setting.svg";
+import BackUpIcon from "../icons/poshtibani.svg";
+import rulesIcon from "../icons/rules.svg";
+import exitIcon from "../icons/exit.svg";
+import pencilIcon from "../icons/pencil.svg";
 
 import {
   Header,
-  Person_info,
-  Person_info2,
-  Poshtibani,
+  PersonInfo,
+  PersonInfo2,
+  BackUp,
   EditBtn,
   Title,
   Profile,
-  Text1,
-  Text2,
-  Text3,
-  Text4,
-  Text5,
-  Text6,
-  Text7,
-} from "./peson_styles";
+  ChoiceOptions,
+
+ 
+} from "./pesonProfile_styles";
 import "../App.css";
 
-const Person = ({ id }) => {
+const Person = () => {
   const data = useSelector((state) => state.users.users);
   const balance = useSelector((state) => state.balance.balance);
   const dispatch = useDispatch();
@@ -42,16 +37,19 @@ const Person = ({ id }) => {
   };
   useEffect(() => {
     dispatch(fetchUsers());
-    dispatch(fetchprofile());
-  }, []);
-  {
+    dispatch(fetchProfile());
+  }, [dispatch]);
+
     console.log(data);
-  }
+    const handleExit=()=>{
+      localStorage.setItem("login", '')
+      window.location.reload()
+    }
   return (
     <>
-      {id ==
+      {localStorage.getItem("login") ===
         (data.length !== 0 ? (
-          data[data.length - 1].myid
+          data[data.length - 1].myId
         ) : (
           <div>loading</div>
         )) && (
@@ -60,11 +58,11 @@ const Person = ({ id }) => {
             <Title>پروژه ایکس</Title>
             <EditBtn onClick={handel}>
               ویرایش
-              <img className="eicon" src={icon8} />
+              <img className="eIcon" src={pencilIcon} alt='Icon'/>
             </EditBtn>
           </Header>
 
-          <Person_info>
+          <PersonInfo>
             <div style={{ display: "flex" }}>
               <Profile onClick={() => console.log("profile")} />
               <div className="name">
@@ -83,38 +81,39 @@ const Person = ({ id }) => {
               </div>
             </div>
             <div className="username">
-              <span className="usertitle">نام کاربری</span>
+              <span className="userTitle">نام کاربری</span>
               {data.length !== 0 && (
-                <span className="uservalue">
+                <span className="userValue">
                   {data[data.length - 1].username.length !== 0 ? (
                     data[data.length - 1].username
                   ) : (
-                    <span className="uservalue" onClick={handel}>
+                    <span className="userValue" onClick={handel}>
                       برای این حساب نام کاربری انتخاب کنید
                     </span>
                   )}
                 </span>
               )}
-              <span className="usertitle">معرفی کوتاه</span>
+              <span className="userTitle">معرفی کوتاه</span>
               {data.length !== 0 && (
-                <span className="uservalue">
+                <span className="userValue">
                   {data[data.length - 1].bio.length !== 0 ? (
                     data[data.length - 1].bio
                   ) : (
-                    <span className="uservalue" onClick={handel}>
+                    <span className="userValue" onClick={handel}>
                       خودتان رو مختصر معرفی کنید
                     </span>
                   )}
                 </span>
               )}
             </div>
-          </Person_info>
-          <Person_info2>
-            <Text1 onClick={() => console.log("contacts")}>
+          </PersonInfo>
+          <PersonInfo2>
+            <ChoiceOptions
+                    onClick={() => console.log("contacts")}>
               <div>مخاطبین </div>
-              <img className="icon" src={icon1} />
-            </Text1>
-            <Text2 onClick={() => console.log("amount")}>
+              <img className="icon" src={ContactsIcon} alt='Icon'/>
+            </ChoiceOptions>
+            <ChoiceOptions onClick={() => console.log("amount")}>
               <div className="mali">
                 <div className="amount">
                   (<span style={{ color: "gray" }}>اعتبار:</span>{" "}
@@ -123,31 +122,31 @@ const Person = ({ id }) => {
                 </div>
                 اطلاعات مالی
               </div>
-              <img className="icon" src={icon2} />
-            </Text2>
-            <Text3 onClick={() => console.log("saved massges")}>
+              <img className="icon" src={FolderIcon} alt='Icon' />
+            </ChoiceOptions>
+            <ChoiceOptions onClick={() => console.log("saved massages")}>
               <div>پیام های ذخیره شده </div>
-              <img className="icon" src={icon3} />
-            </Text3>
-            <Text4 onClick={() => console.log("settings")}>
+              <img className="icon" src={saveIcon} alt='Icon'/>
+            </ChoiceOptions>
+            <ChoiceOptions onClick={() => console.log("settings")}>
               <div>تنظیمات </div>
-              <img className="icon" src={icon4} />
-            </Text4>
-          </Person_info2>
-          <Poshtibani>
-            <Text5 onClick={() => console.log("back up")}>
+              <img className="icon" src={settingIcon} alt='Icon'/>
+            </ChoiceOptions>
+          </PersonInfo2>
+          <BackUp>
+            <ChoiceOptions onClick={() => console.log("back up")}>
               <div>پشتیبانی </div>
-              <img className="icon" src={icon5} />
-            </Text5>
-            <Text6 onClick={() => console.log("rules and conditions")}>
+              <img className="icon" src={BackUpIcon} alt='Icon' />
+            </ChoiceOptions>
+            <ChoiceOptions onClick={() => console.log("rules and conditions")}>
               <div>شرایط و قوانین</div>
-              <img className="icon" src={icon6} />
-            </Text6>
-            <Text7 onClick={() => window.location.reload()}>
+              <img className="icon" src={rulesIcon} alt='Icon' />
+            </ChoiceOptions>
+            <ChoiceOptions onClick={handleExit}>
               <div>خروج از حساب کاربری</div>
-              <img className="icon" src={icon7} />
-            </Text7>
-          </Poshtibani>
+              <img className="icon" src={exitIcon} alt='Icon' />
+            </ChoiceOptions>
+          </BackUp>
         </div>
       )}
     </>

@@ -8,7 +8,7 @@ const profileSlice = createSlice({
     balance: []
   },
   reducers: {
-    usersLoading(state, action) {
+    usersLoading(state) {
       if (state.loading === "idle") {
         state.loading = "pending";
       }
@@ -26,7 +26,7 @@ const profileSlice = createSlice({
 export const { usersLoading, usersReceived } = profileSlice.actions;
 
 // Define a thunk that dispatches those action creators
-export const fetchprofile = () => async (dispatch) => {
+export const fetchProfile = () => async (dispatch) => {
   dispatch(usersLoading(null));
   const response = await axios.get("http://localhost:9000/balance");
   dispatch(usersReceived(await response.data));
