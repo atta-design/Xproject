@@ -5,7 +5,7 @@ const usersSlice = createSlice({
   name: "users",
   initialState: {
     loading: "idle",
-    users: []
+    users: [],
   },
   reducers: {
     usersLoading(state) {
@@ -16,10 +16,10 @@ const usersSlice = createSlice({
     usersReceived(state, action) {
       if (state.loading === "pending") {
         state.loading = "idle";
-        state.users = action.payload.slice(0,200);
+        state.users = action.payload.slice(0, 200);
       }
-    }
-  }
+    },
+  },
 });
 
 export const { usersLoading, usersReceived } = usersSlice.actions;

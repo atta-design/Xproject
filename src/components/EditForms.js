@@ -9,22 +9,13 @@ import {
   BirthdayBox,
   InnerProfile,
   Input,
-
-
-
 } from "./EditForms_styles";
 import TextField from "@mui/material/TextField";
 import { FormGroup } from "@mui/material";
 import { EditBtn } from "./pesonProfile_styles";
-import {  useDispatch } from "react-redux";
-import { fetchUsers } from "./redux/userInformation";
-import { fetchProfile } from "./redux/useAmount";
 import { useNavigate } from "react-router-dom";
-import {
+import { DateInput } from "react-hichestan-datetimepicker";
 
-  DateInput,
-
-} from "react-hichestan-datetimepicker";
 import "../App.css";
 import fleshIcon from "../icons/arrow.svg";
 import pen from "../icons/pencil2.svg";
@@ -32,93 +23,74 @@ import profileLogo from "../icons/profileLogo.svg";
 import camera from "../icons/cameraLogo.svg";
 import icon_atSign from "../icons/@.svg";
 
-
 const EditForms = () => {
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
   const [username, setUserName] = useState("");
   const [bio, setBio] = useState("");
-  const [myDateTime, setMyDateTime] = useState("");
+  const [birthDate, setBirthDate] = useState("");
   const [myId, setMyId] = useState("1");
-  new Date(myDateTime).toLocaleDateString("fa-IR");
+  new Date(birthDate).toLocaleDateString("fa-IR");
 
-  const dispatch = useDispatch();
   let navigate = useNavigate();
+
   const handleChange = (event) => {
-    setMyDateTime(event.target.value);
+    setBirthDate(event.target.value);
   };
+  /*_________________________________Send Personal Information_______________________________________*/
   const handleSend = () => {
     if (firstname) {
       axios
-        .post(`http://localhost:9000/posts`, {
+        .patch(`http://localhost:9000/posts/1`, {
           firstname: firstname,
           lastname: lastname,
           username: username,
           bio: bio,
-          // myDateTime:myDateTime
           myId: myId,
         })
         .catch((err) => alert(err));
     } else {
       alert("وارد کردن نام الزامی است");
     }
+    /*_________________________________Send Birthday_______________________________________*/
+    axios
+      .patch(`http://localhost:9000/profile/1`, {
+        birthDate: birthDate,
+      })
+      .catch((err) => alert(err));
 
-    axios.post(`http://localhost:9000/profile`, {
-      myDateTime: myDateTime,
-    });
-
-    dispatch(fetchUsers());
-    dispatch(fetchProfile());
-
-      navigate("/");
+    navigate("/");
   };
 
-  function handel() {
-
+  /*_________________________________Confirm for return to the person profile page_______________________________________*/
+  function handelConfirm() {
     if (window.confirm("آیا مطمئن هستید که تغییرات داده شده ثبت نشود؟")) {
-
-        navigate("/");
+      navigate("/");
     }
   }
 
   return (
     <div>
       <Header>
-        <Return onClick={handel}>
+        <Return onClick={handelConfirm}>
           بازگشت
-          <img className="returnIcon" src={fleshIcon} alt='icon' />
+          <img className="returnIcon" src={fleshIcon} alt="icon" />
         </Return>
         <EditBtn onClick={handleSend}>
           ذخیره
-          <img className="saveIcon" src={pen} alt='icon' />
+          <img className="saveIcon" src={pen} alt="icon" />
         </EditBtn>
         <Profile onClick={() => console.log("Profile")}>
-          <img className="perIcon" src={profileLogo} alt='icon' />
-          <InnerProfile onClick={() => console.log("EditProfile")} >
-            <img className="camIcon" src={camera} alt='icon' />
+          <img className="PersonIcon" src={profileLogo} alt="icon" />
+          <InnerProfile onClick={() => console.log("EditProfile")}>
+            <img className="camIcon" src={camera} alt="icon" />
           </InnerProfile>
         </Profile>
       </Header>
       <Content>
-        <div className='BorderLine'
-    // style={{
-    //     border: "1px solid #E5E5E5",
-    //     width: "320px",
-    //     height: "0px",
-    //     position: "relative",
-    //     top: "64px",
-    //     margin:'0px auto 80px auto',
-    //   marginBottom:'80px',
-    //     '@media screen and (max-width: 349px)': {
-    //
-    //     width: "200px",
-    //
-    //
-    // }
-    // }}
-    />
-    
-        <FormGroup  >
+        <div className="BorderLine" />
+
+        <FormGroup>
           <label>نام</label>
           <Input
             type="text"
@@ -138,18 +110,21 @@ const EditForms = () => {
           />
 
           <label>نام کاربری</label>
-          <div style={{ display: "inline-flex", flexDirection: "row-reverse", margin:'0 auto' }}>
+          <div
+            style={{
+              display: "inline-flex",
+              flexDirection: "row-reverse",
+              margin: "0 auto",
+            }}
+          >
             <Input
               sx={{
                 width: "276px",
                 marginLeft: "0px",
                 borderRadius: "0px 6px 6px 0px",
-                  '@media screen and (max-width: 349px)': {
-
-                      width: "150px",
-
-
-                  },
+                "@media screen and (max-width: 349px)": {
+                  width: "150px",
+                },
               }}
               minLength="5"
               maxLength="30"
@@ -166,16 +141,10 @@ const EditForms = () => {
                 backgroundColor: "#F3F3F3",
                 borderRadius: "6px 0px 0px 6px",
                 borderRight: "2px solid #E4E4E4",
-                  // '@media screen and (max-width: 349px)': {
-                  //
-                  //     width: "30px",
-                  //
-                  //
-                  // },
                 marginLeft: "7px",
               }}
             >
-              <img src={icon_atSign} className="usernameIcon" alt='icon' />
+              <img src={icon_atSign} className="usernameIcon" alt="icon" />
             </Box>
           </div>
           <label>معرفی کوتاه</label>
@@ -184,18 +153,18 @@ const EditForms = () => {
               width: "320px",
               backgroundColor: "#F3F3F3",
               margin: "0 auto",
-                '@media screen and (max-width: 349px)': {
 
-                    width: "200px",
-
-
-                },
+              "@media screen and (max-width: 349px)": {
+                width: "200px",
+              },
             }}
+            inputProps={{ style: { fontFamily: "CustomFont" } }}
+            className="textField"
             type="text"
             multiline
             rows={2}
             dir="rtl"
-            placeholder="خودتان را مختصر معرفی کنید"
+            placeholder="خودتان را مختصر معرفی کنید..."
             value={bio}
             onChange={(e) => setBio(e.target.value)}
           />
@@ -204,8 +173,8 @@ const EditForms = () => {
           <label>تاریخ تولد</label>
           <BirthdayBox>
             <DateInput
-              value={myDateTime}
-              name={"myDateTime"}
+              value={birthDate}
+              name={"birthDate"}
               onChange={handleChange}
             />
           </BirthdayBox>

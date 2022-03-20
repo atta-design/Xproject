@@ -16,14 +16,11 @@ import pencilIcon from "../icons/pencil.svg";
 import {
   Header,
   PersonInfo,
-  PersonInfo2,
-  BackUp,
+  ControlPanel,
   EditBtn,
   Title,
   Profile,
   ChoiceOptions,
-
- 
 } from "./pesonProfile_styles";
 import "../App.css";
 
@@ -32,19 +29,22 @@ const Person = () => {
   const balance = useSelector((state) => state.balance.balance);
   const dispatch = useDispatch();
   let navigate = useNavigate();
-  const handel = () => {
+
+  const handelEdit = () => {
     navigate("/edit");
   };
   useEffect(() => {
-    dispatch(fetchUsers());
-    dispatch(fetchProfile());
+    setTimeout(() => {
+      dispatch(fetchUsers());
+      dispatch(fetchProfile());
+    }, 2000);
   }, [dispatch]);
 
-    console.log(data);
-    const handleExit=()=>{
-      localStorage.setItem("login", '')
-      window.location.reload()
-    }
+  const handleExit = () => {
+    localStorage.setItem("login", "exit");
+    window.location.reload();
+  };
+
   return (
     <>
       {localStorage.getItem("login") ===
@@ -56,38 +56,32 @@ const Person = () => {
         <div>
           <Header>
             <Title>پروژه ایکس</Title>
-            <EditBtn onClick={handel}>
+            <EditBtn onClick={handelEdit}>
               ویرایش
-              <img className="eIcon" src={pencilIcon} alt='Icon'/>
+              <img className="EditIcon" src={pencilIcon} alt="Icon" />
             </EditBtn>
           </Header>
-
+          {/*_________________________________Person Information_______________________________________*/}
           <PersonInfo>
             <div style={{ display: "flex" }}>
               <Profile onClick={() => console.log("profile")} />
               <div className="name">
-                {data.length !== 0 && (
-                  <span>{data[data.length - 1].firstname}</span>
-                )}
+                {data.length !== 0 && <span>{data[0].firstname}</span>}
 
-                {data.length !== 0 && (
-                  <span>{data[data.length - 1].lastname}</span>
-                )}
+                {data.length !== 0 && <span>{data[0].lastname}</span>}
               </div>
               <div className="phone">
-                {data.length !== 0 && (
-                  <span>{data[data.length - 1].phone}</span>
-                )}
+                {data.length !== 0 && <span>{data[0].phone}</span>}
               </div>
             </div>
             <div className="username">
               <span className="userTitle">نام کاربری</span>
               {data.length !== 0 && (
                 <span className="userValue">
-                  {data[data.length - 1].username.length !== 0 ? (
-                    data[data.length - 1].username
+                  {data[0].username.length !== 0 ? (
+                    data[0].username
                   ) : (
-                    <span className="userValue" onClick={handel}>
+                    <span className="userValueAlt" onClick={handelEdit}>
                       برای این حساب نام کاربری انتخاب کنید
                     </span>
                   )}
@@ -96,10 +90,10 @@ const Person = () => {
               <span className="userTitle">معرفی کوتاه</span>
               {data.length !== 0 && (
                 <span className="userValue">
-                  {data[data.length - 1].bio.length !== 0 ? (
-                    data[data.length - 1].bio
+                  {data[0].bio.length !== 0 ? (
+                    data[0].bio
                   ) : (
-                    <span className="userValue" onClick={handel}>
+                    <span className="userValueAlt" onClick={handelEdit}>
                       خودتان رو مختصر معرفی کنید
                     </span>
                   )}
@@ -107,11 +101,11 @@ const Person = () => {
               )}
             </div>
           </PersonInfo>
-          <PersonInfo2>
-            <ChoiceOptions
-                    onClick={() => console.log("contacts")}>
+          {/*_________________________________Control Panel_______________________________________*/}
+          <ControlPanel>
+            <ChoiceOptions onClick={() => console.log("contacts")}>
               <div>مخاطبین </div>
-              <img className="icon" src={ContactsIcon} alt='Icon'/>
+              <img className="icon" src={ContactsIcon} alt="Icon" />
             </ChoiceOptions>
             <ChoiceOptions onClick={() => console.log("amount")}>
               <div className="mali">
@@ -122,31 +116,31 @@ const Person = () => {
                 </div>
                 اطلاعات مالی
               </div>
-              <img className="icon" src={FolderIcon} alt='Icon' />
+              <img className="icon" src={FolderIcon} alt="Icon" />
             </ChoiceOptions>
             <ChoiceOptions onClick={() => console.log("saved massages")}>
               <div>پیام های ذخیره شده </div>
-              <img className="icon" src={saveIcon} alt='Icon'/>
+              <img className="icon" src={saveIcon} alt="Icon" />
             </ChoiceOptions>
             <ChoiceOptions onClick={() => console.log("settings")}>
               <div>تنظیمات </div>
-              <img className="icon" src={settingIcon} alt='Icon'/>
+              <img className="icon" src={settingIcon} alt="Icon" />
             </ChoiceOptions>
-          </PersonInfo2>
-          <BackUp>
+          </ControlPanel>
+          <ControlPanel>
             <ChoiceOptions onClick={() => console.log("back up")}>
               <div>پشتیبانی </div>
-              <img className="icon" src={BackUpIcon} alt='Icon' />
+              <img className="icon" src={BackUpIcon} alt="Icon" />
             </ChoiceOptions>
             <ChoiceOptions onClick={() => console.log("rules and conditions")}>
               <div>شرایط و قوانین</div>
-              <img className="icon" src={rulesIcon} alt='Icon' />
+              <img className="icon" src={rulesIcon} alt="Icon" />
             </ChoiceOptions>
             <ChoiceOptions onClick={handleExit}>
               <div>خروج از حساب کاربری</div>
-              <img className="icon" src={exitIcon} alt='Icon' />
+              <img className="icon" src={exitIcon} alt="Icon" />
             </ChoiceOptions>
-          </BackUp>
+          </ControlPanel>
         </div>
       )}
     </>

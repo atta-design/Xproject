@@ -20,39 +20,7 @@
   "profile": [
     {
       "id": "1",
-      "birthDate": "2000"
-    },
-    {
-      "myDateTime": "",
-      "id": "EoaxxCG"
-    },
-    {
-      "myDateTime": "",
-      "id": "QWjezBU"
-    },
-    {
-      "myDateTime": "",
-      "id": "s9h9282"
-    },
-    {
-      "myDateTime": "",
-      "id": "WnkOg3q"
-    },
-    {
-      "myDateTime": "",
-      "id": "ZqtPL7n"
-    },
-    {
-      "myDateTime": "",
-      "id": "3IfjdTK"
-    },
-    {
-      "myDateTime": "",
-      "id": "DscQlwU"
-    },
-    {
-      "myDateTime": "",
-      "id": "crRFXh7"
+      "birthDate": "2027-03-16T00:00:00.000Z"
     }
   ]
 }
