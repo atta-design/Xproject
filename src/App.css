@@ -1,8 +1,17 @@
 @font-face {
-  font-family: "CustomFont";
+  font-family: "CustomFontBold";
   src: url("../src/components/fonts/IRANYekanWebBold.ttf");
 }
+@font-face {
+  font-family: "CustomFontMedium";
 
+  src: url("../src/components/fonts/IRANYekanWebMedium.ttf");
+}
+@font-face {
+  font-family: "CustomFont";
+
+  src: url("../src/components/fonts/IRANYekanWebRegular.ttf");
+}
 ::placeholder {
   color: #b1b1b1 !important;
   font-size: 14px !important ;
@@ -19,29 +28,32 @@ label {
   text-align: right;
   margin-right: 30px;
   color: #818181;
-  font-family: "CustomFont", serif;
+  font-family: "CustomFontBold", serif;
   font-size: 14px;
 }
 .name {
   display: flex;
   position: absolute;
-  left: 30%;
+  right: 32%;
   top: 23px;
   direction: rtl;
-  font-family: "CustomFont", serif;
+  font-family: "CustomFontBold", serif;
+  width: 65px;
+  font-weight: 700;
 }
 .phone {
   position: absolute;
-  left: 30%;
+  right: 32%;
   top: 57px;
   direction: rtl;
   font-family: "CustomFont", serif;
   color: #818181;
-  width: 83px;
+  width: 90px;
   font-size: 14px;
+  font-weight: 400;
 }
 .amount {
-  color: rgb(8, 165, 8);
+  color: #a0a8a2;
 }
 .mali {
   display: flex;
@@ -65,8 +77,9 @@ label {
   font-family: "CustomFont", serif;
 }
 .userTitle {
+  font-family: "CustomFontBold", serif;
   font-style: normal;
-  font-weight: bold;
+  font-weight: 700;
   font-size: 12px;
   line-height: 22px;
   color: #55a6ff;
@@ -80,11 +93,14 @@ label {
   cursor: pointer;
   text-align: right;
   color: #b1b1b1;
+  font-family: "CustomFont";
   font-size: 14px !important;
   font-weight: 400 !important;
   font-style: normal;
 }
 .userValue {
+  font-family: "CustomFontBold", serif;
+  font-weight: 400;
   margin: 3px 0;
   cursor: pointer;
   text-align: right;
@@ -127,7 +143,9 @@ label {
   background-color: #55a6ff;
 }
 input {
-  font-family: "CustomFont", serif;
+  font-family: "CustomFontBold", serif;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .lengthTxt {
@@ -165,7 +183,7 @@ input:focus {
     width: 200px;
   }
   .amount {
-    font-size: 10px;
+    font-size: 9px;
   }
   .userValue {
     font-size: 12px;

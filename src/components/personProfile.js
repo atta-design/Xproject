@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchUsers } from "./redux/userInformation";
 import { fetchProfile } from "./redux/useAmount";
+import { fetchBirthday } from "./redux/userBirthday";
 import { useNavigate } from "react-router-dom";
 import ContactsIcon from "../icons/mokhatabin.svg";
 import FolderIcon from "../icons/pushe.svg";
@@ -37,9 +38,10 @@ const Person = () => {
     setTimeout(() => {
       dispatch(fetchUsers());
       dispatch(fetchProfile());
+      dispatch(fetchBirthday())
     }, 2000);
   }, [dispatch]);
-
+  
   const handleExit = () => {
     localStorage.setItem("login", "exit");
     window.location.reload();
@@ -110,9 +112,9 @@ const Person = () => {
             <ChoiceOptions onClick={() => console.log("amount")}>
               <div className="mali">
                 <div className="amount">
-                  (<span style={{ color: "gray" }}>اعتبار:</span>{" "}
-                  {balance.length !== 0 && balance[balance.length - 1].amount}
-                  تومان)
+                  (<span style={{ color: "#a0a8a2" }}>اعتبار:</span>{" "}
+                <span style={{ color: "#36c95e" }}> {balance.length !== 0 && balance[balance.length - 1].amount}
+                  تومان</span> )
                 </div>
                 اطلاعات مالی
               </div>

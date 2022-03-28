@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const profileSlice = createSlice({
-  name: "profile",
+const AmountSlice = createSlice({
+  name: "amount",
   initialState: {
     loading: "idle",
     balance: [],
@@ -22,7 +22,7 @@ const profileSlice = createSlice({
   },
 });
 
-export const { usersLoading, usersReceived } = profileSlice.actions;
+export const { usersLoading, usersReceived } = AmountSlice.actions;
 
 export const fetchProfile = () => async (dispatch) => {
   dispatch(usersLoading(null));
@@ -30,4 +30,4 @@ export const fetchProfile = () => async (dispatch) => {
   dispatch(usersReceived(await response.data));
 };
 
-export default profileSlice.reducer;
+export default AmountSlice.reducer;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import axios from "axios";
 import { Box } from "@mui/material";
 import { Header } from "./pesonProfile_styles";
@@ -15,6 +15,9 @@ import { FormGroup } from "@mui/material";
 import { EditBtn } from "./pesonProfile_styles";
 import { useNavigate } from "react-router-dom";
 import { DateInput } from "react-hichestan-datetimepicker";
+import { fetchUsers } from "./redux/userInformation";
+import { fetchProfile } from "./redux/useAmount";
+import { fetchBirthday } from "./redux/userBirthday";
 
 import "../App.css";
 import fleshIcon from "../icons/arrow.svg";
@@ -22,13 +25,18 @@ import pen from "../icons/pencil2.svg";
 import profileLogo from "../icons/profileLogo.svg";
 import camera from "../icons/cameraLogo.svg";
 import icon_atSign from "../icons/@.svg";
+import {useSelector, useDispatch} from "react-redux";
 
 const EditForms = () => {
-  const [firstname, setFirstName] = useState("");
-  const [lastname, setLastName] = useState("");
-  const [username, setUserName] = useState("");
-  const [bio, setBio] = useState("");
-  const [birthDate, setBirthDate] = useState("");
+ 
+    const data = useSelector((state) => state.users.users);
+    const birthDay = useSelector((state) => state.profile.balance);
+    const dispatch = useDispatch();
+  const [firstname, setFirstName] = useState(data[0].firstname);
+  const [lastname, setLastName] = useState(data[0].lastname);
+  const [username, setUserName] = useState( data[0].username);
+  const [bio, setBio] = useState(data[0].bio);
+  const [birthDate, setBirthDate] = useState(birthDay[0].birthDate);
   const [myId, setMyId] = useState("1");
   new Date(birthDate).toLocaleDateString("fa-IR");
 
@@ -37,6 +45,23 @@ const EditForms = () => {
   const handleChange = (event) => {
     setBirthDate(event.target.value);
   };
+
+  useEffect(() => {
+    setTimeout(() => {
+      dispatch(fetchUsers());
+      dispatch(fetchProfile());
+      dispatch(fetchBirthday())
+        
+  
+    }, 2000);
+  //    birthDay.length!==0&&
+  // setBirthDate(birthDay[0].birthDate)
+ 
+  }, [dispatch]);
+  // useEffect(()=>{
+  //   setBirthDate(Birth)
+  // },[birthDate])
+ 
   /*_________________________________Send Personal Information_______________________________________*/
   const handleSend = () => {
     if (firstname) {
@@ -176,6 +201,7 @@ const EditForms = () => {
               value={birthDate}
               name={"birthDate"}
               onChange={handleChange}
+              placeholder={'...لطفا انتخاب کنید'}
             />
           </BirthdayBox>
         </FormGroup>

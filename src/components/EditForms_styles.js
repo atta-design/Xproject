@@ -15,7 +15,8 @@ export const Return = styled(Button)({
   position: "absolute",
   left: "70%",
   top: " 20px",
-  fontFamily: "CustomFont",
+  fontFamily: "CustomFontBold",
+  fontWeight:700,
   color: "#FFFFFF",
   "@media screen and (min-width: 630px)": {
     left: "80%",
